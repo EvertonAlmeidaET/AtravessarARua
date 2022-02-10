@@ -1,0 +1,53 @@
+package mdl.aula1;
+
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Scanner;
+
+public class AtravessarRua {
+	
+	private static final List<String> POSSIVEISENTRADAUSUARIOCONTINUA = new ArrayList<>();
+	private static final List<String> POSSIVEISENTRADAUSUARIONAO = new ArrayList<>();
+	
+	
+	static {
+		POSSIVEISENTRADAUSUARIOCONTINUA.add("sim");
+		POSSIVEISENTRADAUSUARIOCONTINUA.add("s");
+		POSSIVEISENTRADAUSUARIONAO.add("não");
+		POSSIVEISENTRADAUSUARIONAO.add("nao");
+		POSSIVEISENTRADAUSUARIONAO.add("n");
+		
+	}
+	
+	public static void main(String[] args) {
+		
+		Boolean olharDireita = Boolean.FALSE;
+		Boolean olharEsquerda = Boolean.FALSE;
+		String iniciar = "";
+		Boolean continua = Boolean.FALSE;
+		Scanner in = new Scanner(System.in);
+		
+		
+		do {
+		
+			System.out.print("Deseja atravessar a rua? ");
+			iniciar = in.next();
+			iniciar = iniciar.toLowerCase();
+			if(POSSIVEISENTRADAUSUARIOCONTINUA.contains(iniciar)) {
+				continua = Boolean.TRUE;
+			} else if(POSSIVEISENTRADAUSUARIOCONTINUA.contains(iniciar)) {
+				continua = Boolean.FALSE;
+				break;
+			}
+			
+			System.out.println("vamos lá");
+			
+			
+		}while(continua.equals(Boolean.TRUE));
+		
+		
+		
+	}
+
+}

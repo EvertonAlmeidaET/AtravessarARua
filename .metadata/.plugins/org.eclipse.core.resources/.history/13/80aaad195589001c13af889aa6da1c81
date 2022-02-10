@@ -1,0 +1,89 @@
+package mdl.aula1;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
+
+public class AtravessarRua {
+	
+	private DireitaOuEsquerda direitaOuEsquerda = DireitaOuEsquerda.PARADO;
+	private static final List<String> POSSIVEISENTRADAUSUARIOCONTINUA = new ArrayList<>();
+	private static final List<String> POSSIVEISENTRADAUSUARIONAO = new ArrayList<>();
+	
+	
+	static {
+		POSSIVEISENTRADAUSUARIOCONTINUA.add("sim");
+		POSSIVEISENTRADAUSUARIOCONTINUA.add("s");
+		POSSIVEISENTRADAUSUARIONAO.add("não");
+		POSSIVEISENTRADAUSUARIONAO.add("nao");
+		POSSIVEISENTRADAUSUARIONAO.add("n");
+		
+	}
+	
+	public DireitaOuEsquerda getDireitaOuEsquerda() {
+		return this.direitaOuEsquerda;
+	}
+	
+	public void setDireitaOuEsquerda(DireitaOuEsquerda direitaOuEsquerda) {
+		this.direitaOuEsquerda = direitaOuEsquerda;
+	}
+	
+	public static void main(String[] args) {
+		AtravessarRua atravessarRua = new AtravessarRua();
+		Boolean olharDireita = Boolean.FALSE;
+		Boolean olharEsquerda = Boolean.FALSE;
+		String iniciar = "";
+		String olharDouE = "0";
+		Boolean continua = Boolean.FALSE;
+		Scanner in = new Scanner(System.in);
+		int valor = 10;
+		
+		
+		do {
+		
+			System.out.print("Deseja atravessar a rua? ");
+			iniciar = in.next();
+			iniciar = iniciar.toLowerCase();
+			if(POSSIVEISENTRADAUSUARIOCONTINUA.contains(iniciar)) {
+				continua = Boolean.TRUE;
+			} else if(POSSIVEISENTRADAUSUARIONAO.contains(iniciar)) {
+				System.out.println("FIM DA EXECUÇÃO");
+				continua = Boolean.FALSE;
+				break;
+			}
+			
+			System.out.println("Andando para frente....");
+			System.out.print("Olhar para direita ou para esquerda primeiro? digite D(Direita) ou E(Esquerda) ");
+			olharDouE = in.next();
+			olharDouE = olharDouE.toLowerCase();
+			
+			if (olharDouE.equalsIgnoreCase("D")) {
+				atravessarRua.setDireitaOuEsquerda(DireitaOuEsquerda.DIREITA);
+				
+			} else if (olharDouE.equalsIgnoreCase("E")){
+				atravessarRua.setDireitaOuEsquerda(DireitaOuEsquerda.ESQUERDA);
+			} else {
+				atravessarRua.setDireitaOuEsquerda(DireitaOuEsquerda.PARADO);
+			}
+			
+			switch (atravessarRua.getDireitaOuEsquerda()){
+				case DIREITA: 
+					olharDireita = Boolean.TRUE;
+				break;
+				
+				case ESQUERDA:
+					olharEsquerda = Boolean.TRUE;
+					break;
+					
+				default:
+					System.out.println("Valor não localizado e você foi atropelado");
+			}
+			
+			
+		}while(continua.equals(Boolean.TRUE));
+		
+		
+		
+	}
+
+}
